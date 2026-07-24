@@ -22,7 +22,7 @@ author: Aniruddha Budihal
 navbar-links:
   About Me: "aboutme"
   Resources:
-    - Building a Copy on write file system in rust : ./_posts/Internals of a copy on write file system and how to implement one (in Rust).md
+    - Building a Copy on write file system in rust : ./_posts/2026-07-24-cow-filesystem-fuse-rust.md
 
 ################
 # --- Logo --- #
