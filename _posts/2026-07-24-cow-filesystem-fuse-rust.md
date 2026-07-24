@@ -13,8 +13,8 @@ There has been no use of AI in either writing the code, or anything in this arti
 I like to explain stuff using analogies so you could think of a copy on write file system kind of like a polarizer (ya I know not the first thing that you think of when talking about filesystems). A polarizer allows you to view particular light rays at particular angles, but how does it work ?
 It basically kind of like a slit over the light source and filters out all the other stray light rays that are coming in from different angles and allows one particular angle of light rays to pass through.
 
-![[./../assets/img/Pasted image 20260723120045.png]]
-A simple illustration of how the polarizer works, where it is allowing light rays of only particular angles to pass through (again you could think of this as a sieve for light rays)
+![A simple illustration of how polarizer works](/assets/img/polarizer.png)
+A simple illustration of how polarizer works, where it is allowing light rays of only particular angles to pass through (again you could think of this as a sieve for light rays)
 (side track but if you want to see a real world example of this, this is used in cars where you can see infotainment screens as a passenger but not as a driver driving : [this is a real world example of this](https://youtu.be/1gmjRFKAoA4?si=E3zJjZYc5xwDQC10&t=75))
 
 But what does this have to do with a copy on write filesystem ?
@@ -24,7 +24,7 @@ So an instance interacting with a COW filesystem can edit / create / delete a di
 
 This is achieved by using a base readable on which you are mounting your file system on. If a particular instance has just read a particular directory or a file without making any modification to the original file, it exists solely in the readable from which every instance can read from (if they also have not made any modification to the same content). Upon any modification to the original content the content will be reproduced on the writable path for that particular instance on which it will have exclusive access.
 
-![[./../assets/img/final.png]]
+![/assets/img/final.png]
 
 In the above diagram, every node which is green in colour is a node in the base readable path, the writable instance clones the directory structure in the readable path which is indicated by the purple colour node, and every write or insertion done will result in the formation of a new node in just the writable path which is indicated by a red node.
 
