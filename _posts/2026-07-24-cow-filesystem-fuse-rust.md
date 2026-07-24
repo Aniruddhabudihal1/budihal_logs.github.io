@@ -1,9 +1,3 @@
-   ---
-   layout: post
-   title: "Internals of a copy on write file system and how to implement one (in Rust)"
-   subtitle: "Implentation of a mulithreaded copy on write file system in Rust using fuser"
-   tags: [rust, filesystem, fuse]
-   ---
 
 Before starting of I would like to share my project, which is the copy on write filesystem this article is based on : [unionFS](https://github.com/aniruddhabudihal1/unionFS).It is an implementation of the mulithreaded copy on write filesystem in rust using the fuser library. While researching for the project, I found that there was very minimal or no resources available online on building something like this in Rust, so I decided to write one :)
 There has been no use of AI in either writing the code, or anything in this article
@@ -24,7 +18,7 @@ So an instance interacting with a COW filesystem can edit / create / delete a di
 
 This is achieved by using a base readable on which you are mounting your file system on. If a particular instance has just read a particular directory or a file without making any modification to the original file, it exists solely in the readable from which every instance can read from (if they also have not made any modification to the same content). Upon any modification to the original content the content will be reproduced on the writable path for that particular instance on which it will have exclusive access.
 
-![/assets/img/final.png]
+![an image to visualize a copy on write filesystem](/assets/img/final.png)
 
 In the above diagram, every node which is green in colour is a node in the base readable path, the writable instance clones the directory structure in the readable path which is indicated by the purple colour node, and every write or insertion done will result in the formation of a new node in just the writable path which is indicated by a red node.
 
